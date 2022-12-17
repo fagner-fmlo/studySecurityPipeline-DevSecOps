@@ -33,7 +33,7 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
-        git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
+        git clone -o https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git .
         cd studySecurityPipeline-DevSecOps/
         curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash
         horusec start -p="./" 
