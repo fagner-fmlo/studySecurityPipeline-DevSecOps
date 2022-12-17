@@ -31,8 +31,7 @@ jobs:
         sudo git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         sudo cd studySecurityPipeline-DevSecOps/
         wget https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh
-        sudo bash ./install.sh
-        sudo horusec start
+        pwd
         
   deploy-homolog:
     runs-on: ubuntu-latest
