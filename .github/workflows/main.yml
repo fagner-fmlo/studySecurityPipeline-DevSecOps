@@ -26,6 +26,9 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
+        sudo add-apt-repository universe multiverse
+        sudo apt-get update
+        sudo apt-get upgrade -y
         apt-get install git -y
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         cd studySecurityPipeline-DevSecOps/
