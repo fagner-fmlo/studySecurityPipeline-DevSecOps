@@ -29,8 +29,8 @@ jobs:
         sudo apt-get install git -y
         sudo git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         sudo cd studySecurityPipeline-DevSecOps/
-        sudo ln -s /proc/self/fd /dev/fd
-        sudo bash -s latest <( curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh)
+        curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh
+        sudo bash ./install.sh
         sudo horusec start
         
   deploy-homolog:
