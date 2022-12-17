@@ -27,11 +27,10 @@ jobs:
     - name: Executando o HoruSec
       run:
         sudo apt-get install git -y
-        sudo apt-get install wget
         sudo git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         sudo cd studySecurityPipeline-DevSecOps/
-        wget https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh
-        pwd
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash
+        horusec start -p="./" 
         
   deploy-homolog:
     runs-on: ubuntu-20.04
