@@ -4,13 +4,13 @@ on:
   
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: BUILD
       run: echo Run Build
     
   deploy-dev:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
       name: DEV
     needs: build
@@ -20,7 +20,7 @@ jobs:
   
   deploy-sast:
     name: SAST
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Run Horusec
@@ -31,7 +31,7 @@ jobs:
           horusec start -p="./" 
   
   deploy-homolog:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
       name: homolog
       url: 'https://google.com.br'
@@ -41,7 +41,7 @@ jobs:
         run: echo Deploy on Homolog environment is Done!
   
   deploy-dast:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
       name: dast
     needs: deploy-homolog
@@ -52,7 +52,7 @@ jobs:
         target: 'https://google.com.br'
  
   deploy-prod:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
       name: prod
     needs: [deploy-homolog, deploy-dast]
