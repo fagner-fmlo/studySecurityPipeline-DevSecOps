@@ -31,7 +31,7 @@ jobs:
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         cd studySecurityPipeline-DevSecOps/
         bash latest -s <( curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh)
-        horusec start -p="./"
+        horusec start --project-path="."
         
   deploy-homolog:
     runs-on: ubuntu-latest
