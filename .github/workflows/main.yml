@@ -26,6 +26,7 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
+        sudo apt-get update; sudo apt-get upgrade -y
         sudo apt-get install git -y
         sudo apt-get install curl -y
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
