@@ -29,6 +29,7 @@ jobs:
         apt-get install git -y
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         cd studySecurityPipeline-DevSecOps/
+        ln -s /proc/self/fd /dev/fd
         bash -s latest <( curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh)
         horusec start
         
