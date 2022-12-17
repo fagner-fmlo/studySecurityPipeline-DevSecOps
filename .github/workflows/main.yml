@@ -26,9 +26,9 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
-        sudo apt-get install git -y
-        sudo git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
-        sudo cd studySecurityPipeline-DevSecOps/
+        apt-get install git -y
+        git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
+        cd studySecurityPipeline-DevSecOps/
         curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash
         horusec start -p="./" 
         
