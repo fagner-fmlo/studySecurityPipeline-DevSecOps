@@ -26,12 +26,9 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
-        sudo apt-get update; sudo apt-get upgrade -y
-        sudo apt-get install git -y
-        sudo apt-get install curl -y
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         cd studySecurityPipeline-DevSecOps/
-        bash latest -s <( curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh)
+        bash -s latest <( curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh)
         horusec start
         
   deploy-homolog:
