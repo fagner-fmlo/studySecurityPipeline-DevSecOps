@@ -6,27 +6,27 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - name: Rodando o Build
+    - name: BUILD
       run: echo Build deu bom
     
   deploy-dev:
     runs-on: ubuntu-20.04
     environment:
-      name: dev
+      name: DEV
     needs: build
     steps:
       - name: Rodando deploy DEV
         run: echo Deploy DEV deu bom
   
   deploy-sast:
-    name: Horusec SAST
+    name: SAST
     runs-on: ubuntu-20.04
     needs: build
     steps:
       - name: Rodando o Horusec
         run: |
-          git clone https://github.com/crypto-br/SecPipelineDemo.git
-          cd SecPipelineDemo/
+          git https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
+          cd studySecurityPipeline-DevSecOps/
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
           horusec start -p="./" 
   
@@ -41,7 +41,7 @@ jobs:
         run: echo Deploy HML deu bom
  
   deploy-prod:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     environment:
       name: prd
     needs: deploy-homolog
