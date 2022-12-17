@@ -7,8 +7,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Build
-      run: echo Build realizado com sucesso!
-      
+      run: 
+        echo Build realizado com sucesso!
+        sudo add-apt-repository universe 
+        sudo add-apt-repository multiverse
+        sudo apt-get update
+        sudo apt-get upgrade -y
+        apt-get install git -y
+        
+  
   deploy-dev:
     runs-on: ubuntu-20.04            
     environment:
@@ -26,11 +33,6 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
-        sudo add-apt-repository universe 
-        sudo add-apt-repository multiverse
-        sudo apt-get update
-        sudo apt-get upgrade -y
-        apt-get install git -y
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         cd studySecurityPipeline-DevSecOps/
         curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash
