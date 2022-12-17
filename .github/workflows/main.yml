@@ -17,12 +17,21 @@ jobs:
     steps:
       - name: Deploy Dev
         run: echo Deploy Dev realizado com sucesso!
+        
+  deploy-homolog:
+    runs-on: ubuntu-latest
+    environment:
+      name: homolog
+    needs: deploy-dev
+    steps:
+    - name: Deploy Homolog
+      run: echo Deploy Homolog realizado com sucesso!
   
   deploy-prod:
     runs-on: ubuntu-latest
     environment:
       name: prod
-    needs: deploy-dev
+    needs: deploy-homolog
     steps:
     - name: Deploy Prod
       run: echo Deploy Prod realizado com sucesso!
