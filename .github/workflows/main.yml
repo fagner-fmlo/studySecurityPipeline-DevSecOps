@@ -1,0 +1,31 @@
+name: DevSecOpsapp
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build
+      run: echo Build realizado com sucesso!
+      
+  deploy-dev:
+    runs-on: ubuntu-latest            
+    environment:
+      name: dev
+    needs: build
+    steps:
+      - name: Deploy Dev
+        run: echo Deploy Dev realizado com sucesso!
+  
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    needs: deploy-dev
+    steps:
+    - name: Deploy Prod
+      run: echo Deploy Prod realizado com sucesso!
+      
+        
+  
