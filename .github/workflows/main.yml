@@ -6,55 +6,46 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - name: Build
-      run: 
-        echo Build realizado com sucesso!
-        sudo add-apt-repository universe 
-        sudo add-apt-repository multiverse
-        sudo apt-get update
-        sudo apt-get upgrade -y
-        apt-get install git -y
-        
-  
+    - name: Rodando o Build
+      run: echo Build deu bom
+    
   deploy-dev:
-    runs-on: ubuntu-20.04            
+    runs-on: ubuntu-20.04
     environment:
       name: dev
     needs: build
     steps:
-      - name: Deploy Dev
-        run: echo Deploy Dev realizado com sucesso!
-        
+      - name: Rodando deploy DEV
+        run: echo Deploy DEV deu bom
+  
   deploy-sast:
+    name: Horusec SAST
     runs-on: ubuntu-20.04
-    environment:
-      name: sast
     needs: build
     steps:
-    - name: Executando o HoruSec
-      run:
-        git clone -o https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git .
-        cd studySecurityPipeline-DevSecOps/
-        curl -s https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash
-        horusec start -p="./" 
-        
+      - name: Rodando o Horusec
+        run: |
+          git clone https://github.com/crypto-br/SecPipelineDemo.git
+          cd SecPipelineDemo/
+          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
+          horusec start -p="./" 
+  
   deploy-homolog:
     runs-on: ubuntu-20.04
     environment:
-      name: homolog
-    needs: deploy-dev
+      name: hml
+      url: 'https://google.com.br'
+    needs: [deploy-dev, deploy-sast]
     steps:
-    - name: Deploy Homolog
-      run: echo Deploy Homolog realizado com sucesso!
-  
+      - name: Rodando deploy HML
+        run: echo Deploy HML deu bom
+ 
   deploy-prod:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
-      name: prod
+      name: prd
     needs: deploy-homolog
     steps:
-    - name: Deploy Prod
-      run: echo Deploy Prod realizado com sucesso!
-      
+      - name: Rodando deploy PRD
+        run: echo Deploy PRD deu bom
         
-  
