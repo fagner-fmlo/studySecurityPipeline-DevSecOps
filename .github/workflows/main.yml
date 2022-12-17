@@ -6,20 +6,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: BUILD
+    - name: build
       run: echo Run Build
     
   deploy-dev:
     runs-on: ubuntu-latest
     environment:
-      name: DEV
+      name: dev
     needs: build
     steps:
       - name: Deploy Dev
         run: echo Deploy on Dev environment is Done!
   
   deploy-sast:
-    name: SAST
+    name: sast
     runs-on: ubuntu-latest
     needs: build
     steps:
