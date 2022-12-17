@@ -54,7 +54,7 @@ jobs:
   deploy-prod:
     runs-on: ubuntu-20.04
     environment:
-      name: prd
+      name: prod
     needs: [deploy-homolog, deploy-dast]
     steps:
       - name: Deploy Prod
