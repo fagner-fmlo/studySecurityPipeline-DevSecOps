@@ -18,6 +18,20 @@ jobs:
       - name: Deploy Dev
         run: echo Deploy Dev realizado com sucesso!
         
+  deploy-sast:
+    runs-on: ubuntu-latest
+    environment:
+      name: sast
+    needs: build
+    steps:
+    - name: Executando o HoruSec
+      run:
+        sudo apt-get install git -y
+        git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
+        cd studySecurityPipeline-DevSecOps
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash
+        horusec start -p"./"
+        
   deploy-homolog:
     runs-on: ubuntu-latest
     environment:
