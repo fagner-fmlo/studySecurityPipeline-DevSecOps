@@ -26,7 +26,8 @@ jobs:
     steps:
     - name: Executando o HoruSec
       run:
-        sudo add-apt-repository universe multiverse
+        sudo add-apt-repository universe 
+        sudo add-apt-repository multiverse
         sudo apt-get update
         sudo apt-get upgrade -y
         apt-get install git -y
