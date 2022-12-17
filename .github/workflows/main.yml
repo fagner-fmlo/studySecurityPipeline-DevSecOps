@@ -27,9 +27,10 @@ jobs:
     - name: Executando o HoruSec
       run:
         sudo apt-get install git -y
+        sudo apt-get install curl -y
         git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
         cd studySecurityPipeline-DevSecOps/
-        curl --fail --silent --show-error --location https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
         horusec start -p"./"
         
   deploy-homolog:
