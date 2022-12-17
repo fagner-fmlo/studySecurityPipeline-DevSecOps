@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: BUILD
-      run: echo Build deu bom
+      run: echo Run Build
     
   deploy-dev:
     runs-on: ubuntu-20.04
@@ -15,15 +15,15 @@ jobs:
       name: DEV
     needs: build
     steps:
-      - name: Rodando deploy DEV
-        run: echo Deploy DEV deu bom
+      - name: Deploy Dev
+        run: echo Deploy on Dev environment is Done!
   
   deploy-sast:
     name: SAST
     runs-on: ubuntu-20.04
     needs: build
     steps:
-      - name: Rodando o Horusec
+      - name: Run Horusec
         run: |
           git clone https://github.com/fagner-fmlo/studySecurityPipeline-DevSecOps.git
           cd studySecurityPipeline-DevSecOps/
@@ -33,19 +33,30 @@ jobs:
   deploy-homolog:
     runs-on: ubuntu-20.04
     environment:
-      name: hml
+      name: homolog
       url: 'https://google.com.br'
     needs: [deploy-dev, deploy-sast]
     steps:
-      - name: Rodando deploy HML
-        run: echo Deploy HML deu bom
+      - name: Deploy on Homolog
+        run: echo Deploy on Homolog environment is Done!
+  
+  deploy-dast:
+    runs-on: ubuntu-20.04
+    environment:
+      name: dast
+    needs: deploy-homolog
+    steps:
+    - name: Run OWASP ZAP
+      uses: zaproxy/action-baseline@v0.4.0
+      with:
+        target: 'https://google.com.br'
  
   deploy-prod:
     runs-on: ubuntu-20.04
     environment:
       name: prd
-    needs: deploy-homolog
+    needs: [deploy-homolog, deploy-dast]
     steps:
-      - name: Rodando deploy PRD
-        run: echo Deploy PRD deu bom
+      - name: Deploy Prod
+        run: echo Deploy on Prod environment is Done!
         
